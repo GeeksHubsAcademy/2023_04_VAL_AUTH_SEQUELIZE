@@ -4,6 +4,7 @@ const authController = require('../controllers/authController')
 // const { register} = require('../controllers/authController')
 
 router.post('/register', authController.register);
+router.post('/login', authController.login);
 
 // importamos solo register
 // router.post('/register', register);
