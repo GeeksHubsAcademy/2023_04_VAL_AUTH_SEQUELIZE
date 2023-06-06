@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./db');
 const router = require('./router');
+const auth = require('./middlewares/verifyToken')
 
 const authController = require('./controllers/authController');
 
@@ -13,7 +14,7 @@ app.use(express.json());
 // gestiona las rutas de router.js
 app.use(router);
 
-app.get('/health', (req, res) => {
+app.get('/health', auth, (req, res) => {
     return res.send('healthy');
 });
 
