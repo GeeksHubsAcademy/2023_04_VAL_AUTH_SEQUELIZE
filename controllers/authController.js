@@ -68,7 +68,10 @@ authController.login = async (req, res) => {
                 roleId: user.role_id,
                 email: user.email
             },
-            'secreto'
+            'secreto',
+            {
+                expiresIn: '3h' 
+            }
         );  
 
         return res.json(
