@@ -8,5 +8,6 @@ const router = require('express').Router();
 router.post('/', auth, isAdmin, bookController.createBook)
 router.put('/:id', auth, isAdmin, bookController.updateBook)
 router.delete('/:id', auth, isAdmin, bookController.deleteBook)
+router.get('/', auth, bookController.getAllBooks)
 
 module.exports = router;

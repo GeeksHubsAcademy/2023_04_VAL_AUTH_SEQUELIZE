@@ -1,5 +1,7 @@
 const { Book } = require("../models");
 const authController = require("./authController");
+const { QueryTypes } = require('sequelize');
+
 
 const bookController = {};
 
@@ -102,6 +104,28 @@ bookController.deleteBook = async(req, res) => {
                 success: false,
                 message: "Book cant be deleted",
                 error: error
+            }
+        )
+    }
+}
+
+bookController.getAllBooks = async(req, res) => {
+    try {
+        const books = await Book.findAll();
+
+        return res.json(
+            {
+                success: true,
+                message: "Get all books retrieved",
+                data: books
+            }
+        )
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Books cant be retrieved",
+                error: error.message
             }
         )
     }
