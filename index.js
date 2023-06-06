@@ -18,7 +18,6 @@ app.get('/health', auth, (req, res) => {
     return res.send('healthy');
 });
 
-
 db.then(() =>
     {
         app.listen(PORT, () => {
