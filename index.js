@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('./db');
+const router = require('./router');
 
 const authController = require('./controllers/authController');
 
@@ -9,11 +10,13 @@ const PORT = 3000;
 
 app.use(express.json());
 
+// gestiona las rutas de router.js
+app.use(router);
+
 app.get('/health', (req, res) => {
     return res.send('healthy');
 });
 
-app.post('/register', authController.register);
 
 db.then(() =>
     {
