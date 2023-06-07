@@ -4,6 +4,7 @@ const router = require('./router');
 const auth = require('./middlewares/verifyToken')
 
 const authController = require('./controllers/authController');
+const userController = require('./controllers/userController');
 
 const app = express();
 
