@@ -4,6 +4,7 @@ const router = require('./router');
 const auth = require('./middlewares/verifyToken')
 
 const authController = require('./controllers/authController');
+const serviceController = require('./controllers/serviceController');
 
 const app = express();
 
@@ -17,6 +18,12 @@ app.use(router);
 app.get('/health', auth, (req, res) => {
     return res.send('healthy');
 });
+
+// SERVICES
+app.post('/services', auth,serviceController.createService)
+app.get('/services', serviceController.getAllService)
+app.put('/services/:id',serviceController.updateService)
+app.delete('/services/:id', serviceController.deleteService)
 
 
 db.then(() =>
