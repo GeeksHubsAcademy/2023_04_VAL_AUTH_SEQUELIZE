@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const db = require('./db');
 const router = require('./router');
 const auth = require('./middlewares/verifyToken')
@@ -8,7 +9,7 @@ const authController = require('./controllers/authController');
 const app = express();
 
 const PORT = 3000;
-
+app.use(cors())
 app.use(express.json());
 
 // gestiona las rutas de router.js
