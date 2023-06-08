@@ -1,4 +1,6 @@
 const { User, Book } = require('../models')
+const { Op } = require('sequelize');
+
 const userController = {}
 
 userController.getAllUsers = async (req, res) => {
@@ -11,7 +13,9 @@ userController.getAllUsers = async (req, res) => {
 
         if (req.query.email) {
             filter.where = {
-                    email: req.query.email
+                    email: {
+                       [Op.like]: "%" + req.query.email + "%"
+                    }
             }
         }
 
