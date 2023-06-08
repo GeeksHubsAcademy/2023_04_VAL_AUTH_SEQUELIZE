@@ -18,6 +18,13 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: "book_id"
         }
       );
+
+      models.Book.hasMany(
+        models.Comment,
+        {
+          foreignKey: 'book_id'
+        }
+      );
     }
   }
   Book.init({
