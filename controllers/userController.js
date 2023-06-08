@@ -1,9 +1,38 @@
 const { User, Book } = require('../models')
 const userController = {}
 
-userController.getAllUsers =  async(req, res) => {
+userController.getAllUsers = async (req, res) => {
     try {
-        const users = await User.findAll();
+        let filter = {
+            attributes: {
+                exclude: ["password"]
+            }
+        };
+
+        if (req.query.email) {
+            filter.where = {
+                    email: req.query.email
+            }
+        }
+
+        const users = await User.findAll(
+            // {
+            //     where: {
+            //         email: "admin@admin.com"
+            //     },
+            //     attributes: {
+            //         exclude: ["password"]
+            //     }
+            // },
+            filter
+        );
+
+        if(users.length === 0) {
+            return res.status(404).json({
+                success: true,
+                message: "Not users",
+            })
+        }
 
         return res.json({
             success: true,
@@ -15,13 +44,13 @@ userController.getAllUsers =  async(req, res) => {
             {
                 success: false,
                 message: "Users cant be retrieved",
-                error: error
+                error: error.message
             }
-        )    
+        )
     }
 }
 
-userController.getUsersBooksFavorites = async(req, res) => {
+userController.getUsersBooksFavorites = async (req, res) => {
     try {
         const userId = req.userId;
 
@@ -38,7 +67,7 @@ userController.getUsersBooksFavorites = async(req, res) => {
                             exclude: ["updatedAt"]
                         },
                         model: Book,
-                       
+
                     }
                 ]
             }
@@ -56,7 +85,7 @@ userController.getUsersBooksFavorites = async(req, res) => {
                 message: "Books favorites cant be retrieved",
                 error: error
             }
-        )    
+        )
     }
 }
 
