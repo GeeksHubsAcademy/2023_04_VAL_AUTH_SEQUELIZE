@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "",
-    "database": "auth_fsd_valencia",
-    "host": "127.0.0.1",
+    "password": "31Qdt9XDpUpco7EbJEXW",
+    "database": "railway",
+    "host": "containers-us-west-150.railway.app",
     "dialect": "mysql",
-    "port": 3306
+    "port": 7454
   },
   "test": {
     "username": "root",
